@@ -37,7 +37,5 @@ urlpatterns = [
          name='password_change_done'
          ),
     path('home/', flux.views.home, name='home'),
-    
     path('signup_page/',authentication.views.signup_page, name='signup')
-    
 ]
