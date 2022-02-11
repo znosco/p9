@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ ticket.title }}</h2>
+    <img src="{{ ticket.image }}">
+    <p>{{ ticket.title }}</p>
+    <p>{{ ticket.description }}</p>
+
+    
+    <p>Voulez-vous créer une critique de {{ticket.title}} ?<button><a href="{% url 'review_from_ticket' ticket.id %}">Go!</a></button></p>
+{% endblock content %}

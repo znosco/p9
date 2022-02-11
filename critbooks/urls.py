@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
 from django.urls import path
 import flux.views
 import authentication.views
+import ticket.views
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,5 +40,14 @@ urlpatterns = [
          name='password_change_done'
          ),
     path('home/', flux.views.home, name='home'),
-    path('signup_page/',authentication.views.signup_page, name='signup')
+    path('signup_page/',authentication.views.signup_page, name='signup'),
+    path('ticket/', ticket.views.create_ticket, name='ticket' ),
+    path('review_from_ticket/<int:ticket_id>',ticket.views.create_review_from_ticket, name='review_from_ticket'),
+    path('ticket/<int:ticket_id>', flux.views.view_ticket, name='view_ticket'),
 ]
+
+"""
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+"""
