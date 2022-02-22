@@ -44,7 +44,14 @@ urlpatterns = [
     path('ticket/', ticket.views.create_ticket, name='ticket' ),
     path('review_from_ticket/<int:ticket_id>',ticket.views.create_review_from_ticket, name='review_from_ticket'),
     path('ticket/<int:ticket_id>', flux.views.view_ticket, name='view_ticket'),
-]
+    path('redirect_home', flux.views.no_more_critic, name='redirect_home' ),
+    path('critic_and_review', ticket.views.create_ticket_and_review, name='critique_and_review'),
+    path('follow-users/', ticket.views.follow_users, name='follow_users'),
+    path('my_posts/', flux.views.my_posts, name='my_posts'),
+    path('ticket/<int:ticket_id>/edit', ticket.views.edit_ticket, name='edit_ticket'),
+    
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 """
 if settings.DEBUG:

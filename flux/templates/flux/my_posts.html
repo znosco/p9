@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <p>Vous êtes connecté ! {{user}}</p>
+
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET'%}        
+                <p>{{post.title}}</p>
+                <p>{{post.description}}</p>
+                <img src="/{{ post.image }}">
+                <p><a href="{% url 'edit_ticket' post.id %}">Modifier le billet</a></p>    
+            {% elif post.content_type == 'REVIEW'%}
+                <p>{{post.title}}</p>
+                <p>{{post.description}}</p>
+            {% endif %}
+        {% endfor %}
+    {% endblock content %}

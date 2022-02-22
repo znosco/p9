@@ -6,5 +6,10 @@ class User(AbstractUser):
     SUBSCRIBER = 'SUBSCRIBER'
     ROLE_CHOICES = (
         (SUBSCRIBER, 'Abonné')
-    )
+)
     profile_photo = models.ImageField(verbose_name='photo de profil')
+    follows = models.ManyToManyField(
+    'self',
+    symmetrical=False,
+    verbose_name='suit',
+)

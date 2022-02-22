@@ -1,13 +1,23 @@
+{% load static %}
 <html>
     <head>
         <title>CritBooks</title>
+        <link rel="stylesheet" href="{% static 'app.css' %}">
     </head>
     <body>
         <h1>CritBooks</h1>
-        {% block content %}{% endblock content %}
-        {%  if user.is_authenticated %}
-            <p>Vous êtes connecté en tant que {{ user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
-            <p>Voulez-vous <a href="{% url 'password_change' %}">changer votre mot de passe ?</a></p>
-        {% endif %}
+            <div class="sidebar">
+                {%  if user.is_authenticated %}
+                    <p>Vous êtes connecté en tant que {{ user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+                    <p>Voulez-vous <a href="{% url 'password_change' %}">changer votre mot de passe ?</a></p>
+                    <p><a href="{% url 'home' %}">retour à la page d'acceuil</a></p>
+                    <p><a href="{% url 'critique_and_review' %}">publier une critique avec ticket</a></p>
+                    <p><a href="{% url 'follow_users' %}">Suivre des utilisateurs</a></p>
+                    <p><a href="{% url 'my_posts' %}">Voir vos posts</a></p>
+                {% endif %}
+            </div>
+                <div class="main">
+                    {% block content %}{% endblock content %}
+                </div>
     </body>
 </html>
